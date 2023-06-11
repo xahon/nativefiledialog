@@ -189,6 +189,8 @@ nfdresult_t NFD_OpenDialog( const char *filterList,
     command[1] = strdup("--file-selection");
     command[2] = strdup("--title=Open File");
 
+    // TODO: Check if it can handle defaultPath as a filename and extract the path to the parent folder
+
     char* stdOut = NULL;
     nfdresult_t result = ZenityCommon(command, commandLen, defaultPath, filterList, &stdOut);
             

@@ -358,6 +358,15 @@ static nfdresult_t SetDefaultPath( IFileDialog *dialog, const char *defaultPath 
     IShellItem *folder;
     HRESULT result = SHCreateItemFromParsingName( defaultPathW, NULL, IID_PPV_ARGS(&folder) );
 
+    SFGAOF folderAttribs;
+    if (SUCCEEDED(folder->GetAttributes(SFGAO_FOLDER, &folderAttribs)))
+    {
+        if (!(folderAttribs & SFGAO_FOLDER)) // If it's a path to file, get its parent folder
+        {
+            folder->GetParent(&folder);
+        }
+    }
+
     // Valid non results.
     if ( result == HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND) || result == HRESULT_FROM_WIN32(ERROR_INVALID_DRIVE) )
     {

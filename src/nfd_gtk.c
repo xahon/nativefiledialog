@@ -97,6 +97,8 @@ static void SetDefaultPath( GtkWidget *dialog, const char *defaultPath )
     if ( !defaultPath || strlen(defaultPath) == 0 )
         return;
 
+    // TODO: Check if it can handle defaultPath as a filename and extract the path to the parent folder
+
     /* GTK+ manual recommends not specifically setting the default path.
        We do it anyway in order to be consistent across platforms.
 

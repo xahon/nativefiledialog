@@ -62,6 +62,8 @@ static void SetDefaultPath( NSSavePanel *dialog, const nfdchar_t *defaultPath )
     if ( !defaultPath || strlen(defaultPath) == 0 )
         return;
 
+    // TODO: Check if it can handle defaultPath as a filename and extract the path to the parent folder
+
     NSString *defaultPathString = [NSString stringWithUTF8String: defaultPath];
     NSURL *url = [NSURL fileURLWithPath:defaultPathString isDirectory:YES];
     [dialog setDirectoryURL:url];    
